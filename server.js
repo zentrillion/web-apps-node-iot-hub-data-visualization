@@ -12,6 +12,8 @@ app.use(function (req, res/*, next*/) {
   res.redirect('/');
 });
 
+console.log('Test01');
+
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
@@ -29,9 +31,16 @@ wss.broadcast = function broadcast(data) {
   });
 };
 
+console.log('Test02');
+
+console.log(process.env['Azure.IoT.IoTHub.ConnectionString']);
+console.log(process.env['Azure.IoT.IoTHub.ConsumerGroup']);
+
 var iotHubReader = new iotHubClient(process.env['Azure.IoT.IoTHub.ConnectionString'], process.env['Azure.IoT.IoTHub.ConsumerGroup']);
 iotHubReader.startReadMessage(function (obj, date) {
   try {
+    console.log('Test05');
+
     console.log(date);
     date = date || Date.now()
     wss.broadcast(JSON.stringify(Object.assign(obj, { time: moment.utc(date).format('YYYY:MM:DD[T]hh:mm:ss') })));
@@ -41,10 +50,14 @@ iotHubReader.startReadMessage(function (obj, date) {
   }
 });
 
+console.log('Test03');
+
 var port = normalizePort(process.env.PORT || '3000');
 server.listen(port, function listening() {
   console.log('Listening on %d', server.address().port);
 });
+
+console.log('Test04');
 
 /**
  * Normalize a port into a number, string, or false.

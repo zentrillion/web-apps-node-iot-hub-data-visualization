@@ -18,7 +18,14 @@ IoTHubReaderClient.prototype.startReadMessage = function(cb) {
   };
   var deviceId = process.env['Azure.IoT.IoTHub.DeviceId'];
 
-  EventHubClient.createFromIotHubConnectionString(this.connectionString).then((client) => {
+  
+  var connectionStringHelper = 'HostName=smart-mirror-hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=124lLKW5lFQPMXgM1XmNvOBLo7uIN6gRwbl8S3BOGT8=';
+
+  /*var connectionStringHelper = this.connectionString;*/
+  console.log(connectionStringHelper);
+
+  /*EventHubClient.createFromIotHubConnectionString(this.connectionString).then((client) => {*/
+  EventHubClient.createFromIotHubConnectionString(connectionStringHelper).then((client) => {
     console.log("Successully created the EventHub Client from iothub connection string.");
     self.iotHubClient = client;
     return self.iotHubClient.getPartitionIds();
