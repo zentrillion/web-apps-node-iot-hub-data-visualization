@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  Chart.defaults.global.defaultColor = 'rgba(255,255,255,1)';
+
   var timeData = [],
     temperatureData = [],
     humidityData = [];
@@ -9,22 +11,22 @@ $(document).ready(function () {
         fill: false,
         label: 'Temperature',
         yAxisID: 'Temperature',
-        borderColor: "rgba(255, 204, 0, 1)",
-        pointBoarderColor: "rgba(255, 204, 0, 1)",
-        backgroundColor: "rgba(255, 204, 0, 0.4)",
-        pointHoverBackgroundColor: "rgba(255, 204, 0, 1)",
-        pointHoverBorderColor: "rgba(255, 204, 0, 1)",
+        borderColor: "rgba(255,255,255,1)",
+        pointBoarderColor: "rgba(255,255,255,1)",
+        backgroundColor: "rgba(255,255,255,1)",
+        pointHoverBackgroundColor: "rgba(255,255,255,1)",
+        pointHoverBorderColor: "rgba(255,255,255,1)",
         data: temperatureData
       },
       {
         fill: false,
         label: 'Humidity',
         yAxisID: 'Humidity',
-        borderColor: "rgba(24, 120, 240, 1)",
-        pointBoarderColor: "rgba(24, 120, 240, 1)",
-        backgroundColor: "rgba(24, 120, 240, 0.4)",
-        pointHoverBackgroundColor: "rgba(24, 120, 240, 1)",
-        pointHoverBorderColor: "rgba(24, 120, 240, 1)",
+        borderColor: "rgba(255,255,255,1)",
+        pointBoarderColor: "rgba(255,255,255,1)",
+        backgroundColor: "rgba(255,255,255,1)",
+        pointHoverBackgroundColor: "rgba(255,255,255,1)",
+        pointHoverBorderColor: "rgba(255,255,255,1)",
         data: humidityData
       }
     ]
@@ -34,7 +36,14 @@ $(document).ready(function () {
     title: {
       display: true,
       text: 'Temperature & Humidity Real-time Data',
-      fontSize: 36
+      fontSize: 36,
+      fontColor: "rgb(255, 255, 255)"
+    },
+    legend: {
+      display: true,
+      labels: {
+          fontColor: "rgb(255, 255, 255)"
+      }
     },
     scales: {
       yAxes: [{
@@ -42,15 +51,27 @@ $(document).ready(function () {
         type: 'linear',
         scaleLabel: {
           labelString: 'Temperature(C)',
-          display: true
+          display: true,
+          fontColor: 'white'
+        },
+        gridLines: {
+          display: true,
+          color: "rgba(255,255,255,1)",
+          zeroLineColor: "rgba(255,255,255,1)"
         },
         position: 'left',
+        ticks: {
+          suggestedMin: 0,
+          suggestedMax: 50,
+          fontColor: 'white'
+        }
       }, {
           id: 'Humidity',
           type: 'linear',
           scaleLabel: {
             labelString: 'Humidity(%)',
-            display: true
+            display: true,
+            fontColor: 'white'
           },
           position: 'right'
         }]
@@ -100,3 +121,9 @@ $(document).ready(function () {
     }
   }
 });
+
+/*
+a {
+  color: #00B7FF;
+}
+*/
